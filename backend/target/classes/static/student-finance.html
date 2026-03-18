@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financeiro | Academia FitLife</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="student-dashboard.html" class="sidebar-logo" id="sidebarLogoToggle">
+                <i class="ph-fill ph-barbell"></i>
+                <span>FitLife</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="student-dashboard.html" class="nav-item"><i class="ph ph-squares-four"></i><span>Meu Painel</span></a>
+            <a href="student-workouts.html" class="nav-item"><i class="ph ph-clipboard-text"></i><span>Meus Treinos</span></a>
+            <a href="student-finance.html" class="nav-item active"><i class="ph ph-currency-dollar"></i><span>Financeiro</span></a>
+            <a href="student-profile.html" class="nav-item"><i class="ph ph-user"></i><span>Meu Perfil</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">AL</div>
+                <div class="user-info">
+                    <div class="user-name">Aluno Exemplo</div>
+                    <div class="user-role">Plano Prata</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-wrapper">
+        <header class="top-header">
+            <div style="flex: 1;"></div>
+            <div class="header-actions">
+                <button class="header-toggle" id="mobileMenuToggle"><i class="ph ph-list"></i></button>
+                <button class="action-btn"><i class="ph ph-bell"></i></button>
+                <button class="action-btn" onclick="document.location.href='index.html'" title="Sair"><i class="ph ph-sign-out"></i></button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Financeiro</h1>
+                    <p>Acompanhe suas faturas e histórico de pagamentos mensais.</p>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <!-- Próxima Fatura -->
+                <div class="stat-card glass-panel" style="border: 1px solid rgba(56,189,248,0.3);">
+                    <div class="stat-header">
+                        <div class="stat-title" style="color: #38bdf8;">Próxima Fatura</div>
+                        <div class="stat-icon" style="background: rgba(56,189,248,0.12); color: #38bdf8;"><i class="ph-fill ph-invoice"></i></div>
+                    </div>
+                    <div class="stat-value" style="font-size: 2.2rem; margin: 0.5rem 0;">R$ 119,90</div>
+                    <div class="stat-trend">Vencimento: 15/04/2026</div>
+                    <button class="btn-primary" style="margin-top: 1rem; width: 100%; justify-content: center; background: rgba(56,189,248,0.15); color: #38bdf8;">Pagar com PIX</button>
+                </div>
+                
+                <!-- Plano Atual -->
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Plano Atual</div>
+                        <div class="stat-icon" style="background: rgba(16,185,129,0.12); color: #10b981;"><i class="ph-fill ph-medal"></i></div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1.8rem; margin: 0.5rem 0;">Plano Prata</div>
+                    <div class="stat-trend positive">Ativo</div>
+                </div>
+
+                <!-- Método Pagamento -->
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Método de Pagamento</div>
+                        <div class="stat-icon" style="background: rgba(168,85,247,0.12); color: #a855f7;"><i class="ph-fill ph-credit-card"></i></div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1.2rem; margin: 0.5rem 0;">PIX / Boleto</div>
+                    <div class="stat-trend">Pagamento Manual Mensal</div>
+                    <button class="btn-primary" style="margin-top: 1rem; width: 100%; justify-content: center; background: rgba(255,255,255,0.05); border: 1px solid var(--surface-border); color: var(--text-main);">Cadastrar Cartão</button>
+                </div>
+            </div>
+
+            <!-- Histórico -->
+            <div class="panel glass-panel" style="margin-top: 1.5rem;">
+                <div class="panel-header">
+                    <h2 class="panel-title">Histórico de Pagamentos</h2>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Referência</th>
+                                <th>Data Vencimento</th>
+                                <th>Data Pagamento</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                                <th>Comprovante</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mensalidade Março/2026</td>
+                                <td>15/03/2026</td>
+                                <td>14/03/2026</td>
+                                <td>R$ 119,90</td>
+                                <td><span style="background: rgba(16,185,129,0.1); color: #10b981; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">Pago</span></td>
+                                <td><a href="#" style="color: #38bdf8; text-decoration: none;"><i class="ph ph-download-simple"></i> Baixar</a></td>
+                            </tr>
+                            <tr>
+                                <td>Mensalidade Fevereiro/2026</td>
+                                <td>15/02/2026</td>
+                                <td>15/02/2026</td>
+                                <td>R$ 119,90</td>
+                                <td><span style="background: rgba(16,185,129,0.1); color: #10b981; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">Pago</span></td>
+                                <td><a href="#" style="color: #38bdf8; text-decoration: none;"><i class="ph ph-download-simple"></i> Baixar</a></td>
+                            </tr>
+                            <tr>
+                                <td>Mensalidade Janeiro/2026</td>
+                                <td>15/01/2026</td>
+                                <td>13/01/2026</td>
+                                <td>R$ 119,90</td>
+                                <td><span style="background: rgba(16,185,129,0.1); color: #10b981; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">Pago</span></td>
+                                <td><a href="#" style="color: #38bdf8; text-decoration: none;"><i class="ph ph-download-simple"></i> Baixar</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="js/sidebar.js"></script>
+<script src="js/student-finance.js"></script>
+</body>
+</html>

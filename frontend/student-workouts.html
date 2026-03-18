@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Treinos | Academia FitLife</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="student-dashboard.html" class="sidebar-logo" id="sidebarLogoToggle">
+                <i class="ph-fill ph-barbell"></i>
+                <span>FitLife</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="student-dashboard.html" class="nav-item"><i class="ph ph-squares-four"></i><span>Meu Painel</span></a>
+            <a href="student-workouts.html" class="nav-item active"><i class="ph ph-clipboard-text"></i><span>Meus Treinos</span></a>
+            <a href="student-finance.html" class="nav-item"><i class="ph ph-currency-dollar"></i><span>Financeiro</span></a>
+            <a href="student-profile.html" class="nav-item"><i class="ph ph-user"></i><span>Meu Perfil</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">AL</div>
+                <div class="user-info">
+                    <div class="user-name">Aluno Exemplo</div>
+                    <div class="user-role">Plano Prata</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-wrapper">
+        <header class="top-header">
+            <div style="flex: 1;"></div>
+            <div class="header-actions">
+                <button class="header-toggle" id="mobileMenuToggle"><i class="ph ph-list"></i></button>
+                <button class="action-btn"><i class="ph ph-bell"></i></button>
+                <button class="action-btn" onclick="document.location.href='index.html'" title="Sair"><i class="ph ph-sign-out"></i></button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Meus Treinos</h1>
+                    <p>Aqui você encontra todas as suas fichas de exercícios cadastradas.</p>
+                </div>
+            </div>
+
+            <!-- Ficha A -->
+            <div class="panel glass-panel" style="margin-bottom: 1.5rem;">
+                <div class="panel-header" style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(56,189,248,0.12); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                            <i class="ph-fill ph-barbell"></i>
+                        </div>
+                        <div>
+                            <h2 class="panel-title" style="margin-bottom: 0;">Ficha A <span style="font-size: 0.8rem; font-weight: normal; background: rgba(16,185,129,0.2); color: #10b981; padding: 0.2rem 0.5rem; border-radius: 12px; margin-left: 0.5rem;">Atual</span></h2>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Foco: Peito, Ombro e Tríceps | Instrutor: Carlos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Exercício</th>
+                                <th>Séries</th>
+                                <th>Repetições</th>
+                                <th>Descanso (seg)</th>
+                                <th>Carga Recomendada</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 500;">Supino Reto (Barra)</td>
+                                <td>4</td>
+                                <td>10 a 12</td>
+                                <td>60</td>
+                                <td>Anotar...</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">Supino Inclinado (Halteres)</td>
+                                <td>3</td>
+                                <td>10</td>
+                                <td>60</td>
+                                <td>Anotar...</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">Crucifixo Máquina</td>
+                                <td>3</td>
+                                <td>12</td>
+                                <td>45</td>
+                                <td>Anotar...</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">Desenvolvimento Halteres</td>
+                                <td>3</td>
+                                <td>10 a 12</td>
+                                <td>60</td>
+                                <td>Anotar...</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">Elevação Lateral</td>
+                                <td>4</td>
+                                <td>12 a 15</td>
+                                <td>45</td>
+                                <td>Anotar...</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">Tríceps Pulley</td>
+                                <td>4</td>
+                                <td>12</td>
+                                <td>45</td>
+                                <td>Anotar...</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">Tríceps Corda</td>
+                                <td>3</td>
+                                <td>Falha</td>
+                                <td>45</td>
+                                <td>Anotar...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Ficha B -->
+            <div class="panel glass-panel">
+                <div class="panel-header" style="border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem; margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(168,85,247,0.12); color: #a855f7; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                            <i class="ph-fill ph-person-simple-run"></i>
+                        </div>
+                        <div>
+                            <h2 class="panel-title" style="margin-bottom: 0;">Ficha B</h2>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Foco: Costas, Bíceps e Pernas | Instrutor: Carlos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Exercício</th>
+                                <th>Séries</th>
+                                <th>Repetições</th>
+                                <th>Descanso (seg)</th>
+                                <th>Carga Recomendada</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 500;">Puxada Frente</td>
+                                <td>4</td>
+                                <td>10 a 12</td>
+                                <td>60</td>
+                                <td>Anotar...</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">Remada Curvada</td>
+                                <td>3</td>
+                                <td>10</td>
+                                <td>60</td>
+                                <td>Anotar...</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">Leg Press 45</td>
+                                <td>4</td>
+                                <td>12</td>
+                                <td>90</td>
+                                <td>Anotar...</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">Cadeira Extensora</td>
+                                <td>3</td>
+                                <td>15</td>
+                                <td>60</td>
+                                <td>Anotar...</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 500;">Rosca Direta (Barra W)</td>
+                                <td>3</td>
+                                <td>10 a 12</td>
+                                <td>45</td>
+                                <td>Anotar...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="js/sidebar.js"></script>
+<script src="js/student-workouts.js"></script>
+</body>
+</html>

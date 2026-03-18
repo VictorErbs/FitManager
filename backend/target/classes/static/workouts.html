@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Treinos - Academia FitLife">
+    <title>Treinos | Academia FitLife</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/students.css">
+    <link rel="stylesheet" href="css/workouts.css">
+</head>
+<body>
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="sidebar-logo">
+                <i class="ph-fill ph-barbell"></i><span>FitLife</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item"><i class="ph ph-squares-four"></i><span>Painel Geral</span></a>
+            <a href="students.html" class="nav-item"><i class="ph ph-users"></i><span>Alunos</span></a>
+            <a href="workouts.html" class="nav-item active"><i class="ph ph-clipboard-text"></i><span>Treinos</span></a>
+            <a href="checkin.html" class="nav-item"><i class="ph ph-check-circle"></i><span>Recepção / Check-in</span></a>
+            <a href="financeiro.html" class="nav-item"><i class="ph ph-currency-dollar"></i><span>Financeiro</span></a>
+            <a href="configuracoes.html" class="nav-item"><i class="ph ph-gear"></i><span>Configurações</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar">PE</div>
+                <div class="user-info">
+                    <div class="user-name">Prof. Exemplo</div>
+                    <div class="user-role">Professor</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-wrapper">
+        <header class="top-header">
+            <div class="search-bar">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar treino ou aluno..." id="searchInput" oninput="filterWorkouts()">
+            </div>
+            <div class="header-actions">
+                <button class="header-toggle" id="mobileMenuToggle"><i class="ph ph-list"></i></button>
+                <button class="action-btn"><i class="ph ph-bell"></i></button>
+                <button class="action-btn" onclick="document.location.href='index.html'" title="Sair"><i class="ph ph-sign-out"></i></button>
+            </div>
+        </header>
+
+        <div class="main-content page-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Fichas de Treino</h1>
+                    <p>Gerencie os treinos personalizados por aluno.</p>
+                </div>
+                <button class="btn-primary" onclick="openModal()">
+                    <i class="ph ph-plus" style="margin-right: 0.5rem;"></i>
+                    Nova Ficha
+                </button>
+            </div>
+
+            <!-- Workout Cards Grid -->
+            <div class="workout-cards" id="workoutsGrid">
+                <div style="grid-column: 1/-1; text-align:center; padding: 3rem; color: var(--text-muted);">
+                    <i class="ph ph-spinner" style="font-size: 2rem;"></i>
+                    <p>Carregando treinos...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- New Workout Modal -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="closeModalOutside(event)">
+    <div class="glass-panel modal" style="max-width: 600px;">
+        <div class="modal-header">
+            <h2 class="modal-title">Nova Ficha de Treino</h2>
+            <button class="close-btn" onclick="closeModal()"><i class="ph ph-x"></i></button>
+        </div>
+        <form id="newWorkoutForm" style="max-height: 70vh; overflow-y: auto;">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nome do Aluno</label>
+                    <input type="text" id="wStudentName" class="form-control" placeholder="Ex: João Alves" required>
+                </div>
+                <div class="form-group">
+                    <label>Professor</label>
+                    <input type="text" id="wProfessorName" class="form-control" placeholder="Ex: Prof. Paulo" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Título da Ficha</label>
+                <input type="text" id="wTitle" class="form-control" placeholder="Ex: Treino A - Peito e Tríceps" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Divisão</label>
+                    <select id="wDivision" class="form-control">
+                        <option value="Treino A">Treino A</option>
+                        <option value="Treino B">Treino B</option>
+                        <option value="Treino C">Treino C</option>
+                        <option value="Treino D">Treino D</option>
+                        <option value="Full Body">Full Body</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Objetivo</label>
+                    <select id="wObjective" class="form-control">
+                        <option value="Hipertrofia">Hipertrofia</option>
+                        <option value="Emagrecimento">Emagrecimento</option>
+                        <option value="Resistência">Resistência</option>
+                        <option value="Condicionamento">Condicionamento</option>
+                        <option value="Reabilitação">Reabilitação</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Exercise Builder -->
+            <div class="exercise-builder">
+                <div class="exercise-builder-title">Exercícios</div>
+                <div id="exerciseRows"></div>
+                <button type="button" class="btn-add-exercise" onclick="addExerciseRow()">
+                    <i class="ph ph-plus"></i> Adicionar Exercício
+                </button>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn-primary">
+                    <i class="ph ph-floppy-disk" style="margin-right: 0.5rem;"></i>
+                    Salvar Ficha
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="js/sidebar.js"></script>
+<script src="js/workouts.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestão de Alunos - Academia FitLife">
+    <title>Alunos | Academia FitLife</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/students.css">
+</head>
+<body>
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="sidebar-logo">
+                <i class="ph-fill ph-barbell"></i><span>FitLife</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item"><i class="ph ph-squares-four"></i><span>Painel Geral</span></a>
+            <a href="students.html" class="nav-item active"><i class="ph ph-users"></i><span>Alunos</span></a>
+            <a href="workouts.html" class="nav-item"><i class="ph ph-clipboard-text"></i><span>Treinos</span></a>
+            <a href="checkin.html" class="nav-item"><i class="ph ph-check-circle"></i><span>Recepção / Check-in</span></a>
+            <a href="financeiro.html" class="nav-item"><i class="ph ph-currency-dollar"></i><span>Financeiro</span></a>
+            <a href="configuracoes.html" class="nav-item"><i class="ph ph-gear"></i><span>Configurações</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar">GE</div>
+                <div class="user-info">
+                    <div class="user-name">Gestor Exemplo</div>
+                    <div class="user-role">Administrador</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-wrapper">
+        <header class="top-header">
+            <div class="search-bar">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar aluno ou plano..." id="globalSearch">
+            </div>
+            <div class="header-actions">
+                <button class="action-btn"><i class="ph ph-bell"></i><span class="badge-notif">3</span></button>
+                <button class="header-toggle" id="mobileMenuToggle"><i class="ph ph-list"></i></button>
+                <button class="action-btn" onclick="document.location.href='index.html'" title="Sair"><i class="ph ph-sign-out"></i></button>
+            </div>
+        </header>
+
+        <div class="main-content page-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Alunos</h1>
+                    <p>Gerencie os alunos cadastrados na academia.</p>
+                </div>
+                <button class="btn-primary" id="btnNewStudent" onclick="openModal()">
+                    <i class="ph ph-plus" style="margin-right: 0.5rem;"></i>
+                    Novo Aluno
+                </button>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <div class="toolbar-search">
+                    <i class="ph ph-funnel"></i>
+                    <input type="text" id="searchInput" placeholder="Filtrar por nome ou e-mail..." oninput="filterStudents()">
+                </div>
+                <div style="display: flex; gap: 0.75rem;">
+                    <button class="btn-secondary" onclick="filterByStatus('all')" id="filter-all">Todos</button>
+                    <button class="btn-secondary" onclick="filterByStatus('ACTIVE')" id="filter-active">Ativos</button>
+                    <button class="btn-secondary" onclick="filterByStatus('OVERDUE')" id="filter-overdue">Inadimplentes</button>
+                </div>
+            </div>
+
+            <!-- Students Table -->
+            <div class="panel glass-panel">
+                <div class="table-wrapper">
+                    <table id="studentsTable">
+                        <thead>
+                            <tr>
+                                <th>Aluno</th>
+                                <th>E-mail</th>
+                                <th>Status</th>
+                                <th>Data de Matrícula</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsBody">
+                            <tr>
+                                <td colspan="5">
+                                    <div class="empty-state">
+                                        <i class="ph ph-spinner"></i>
+                                        <p>Carregando alunos...</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- New Student Modal -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="closeModalOutside(event)">
+    <div class="glass-panel modal">
+        <div class="modal-header">
+            <h2 class="modal-title">Cadastrar Novo Aluno</h2>
+            <button class="close-btn" onclick="closeModal()"><i class="ph ph-x"></i></button>
+        </div>
+        <form id="newStudentForm">
+            <div class="form-group">
+                <label for="studentName">Nome Completo</label>
+                <input type="text" id="studentName" class="form-control" placeholder="Ex: João da Silva" required>
+            </div>
+            <div class="form-group">
+                <label for="studentEmail">E-mail</label>
+                <input type="email" id="studentEmail" class="form-control" placeholder="aluno@email.com" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="studentStatus">Status</label>
+                    <select id="studentStatus" class="form-control">
+                        <option value="ACTIVE">Ativo</option>
+                        <option value="INACTIVE">Inativo</option>
+                        <option value="OVERDUE">Inadimplente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="studentDate">Data de Matrícula</label>
+                    <input type="date" id="studentDate" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn-primary">
+                    <i class="ph ph-floppy-disk" style="margin-right: 0.5rem;"></i>
+                    Salvar Aluno
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="js/sidebar.js"></script>
+<script src="js/students.js"></script>
+</body>
+</html>

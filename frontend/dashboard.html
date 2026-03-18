@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Painel Geral - Academia FitLife">
+    <title>Painel Geral | Academia FitLife</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="sidebar-logo" id="sidebarLogoToggle">
+                <i class="ph-fill ph-barbell"></i>
+                <span>FitLife</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item active"><i class="ph ph-squares-four"></i><span>Painel Geral</span></a>
+            <a href="students.html" class="nav-item"><i class="ph ph-users"></i><span>Alunos</span></a>
+            <a href="workouts.html" class="nav-item"><i class="ph ph-clipboard-text"></i><span>Treinos</span></a>
+            <a href="checkin.html" class="nav-item"><i class="ph ph-check-circle"></i><span>Recepção / Check-in</span></a>
+            <a href="financeiro.html" class="nav-item"><i class="ph ph-currency-dollar"></i><span>Financeiro</span></a>
+            <a href="configuracoes.html" class="nav-item"><i class="ph ph-gear"></i><span>Configurações</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar">GE</div>
+                <div class="user-info">
+                    <div class="user-name">Gestor Exemplo</div>
+                    <div class="user-role">Administrador</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-wrapper">
+        <header class="top-header">
+            <div class="search-bar">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar aluno ou plano...">
+            </div>
+            <div class="header-actions">
+                <button class="header-toggle" id="mobileMenuToggle"><i class="ph ph-list"></i></button>
+                <button class="action-btn"><i class="ph ph-bell"></i><span class="badge-notif">3</span></button>
+                <button class="action-btn" onclick="document.location.href='index.html'" title="Sair"><i class="ph ph-sign-out"></i></button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Visão Geral</h1>
+                    <p>Acompanhe o desempenho da Academia FitLife hoje.</p>
+                </div>
+                <button class="btn-primary" onclick="document.location.href='students.html'">
+                    <i class="ph ph-plus" style="margin-right: 0.5rem;"></i>Novo Aluno
+                </button>
+            </div>
+
+            <!-- Stat Cards -->
+            <div class="dashboard-grid">
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Faturamento Mensal</div>
+                        <div class="stat-icon revenue"><i class="ph-fill ph-currency-dollar"></i></div>
+                    </div>
+                    <div class="stat-value" id="totalRevenue">R$ --</div>
+                    <div class="stat-trend positive"><i class="ph ph-trend-up"></i> Módulo Financeiro</div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Alunos Ativos</div>
+                        <div class="stat-icon users"><i class="ph-fill ph-users"></i></div>
+                    </div>
+                    <div class="stat-value" id="activeStudentsCount">--</div>
+                    <div class="stat-trend positive"><i class="ph ph-trend-up"></i> Carregando...</div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Check-ins Hoje</div>
+                        <div class="stat-icon checkins"><i class="ph-fill ph-check-square-offset"></i></div>
+                    </div>
+                    <div class="stat-value" id="todayCheckins">--</div>
+                    <div class="stat-trend">Até o momento</div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Inadimplentes</div>
+                        <div class="stat-icon alerts"><i class="ph-fill ph-warning-circle"></i></div>
+                    </div>
+                    <div class="stat-value" id="overdueCount">--</div>
+                    <div class="stat-trend negative"><i class="ph ph-trend-down"></i> Planeje cobranças</div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="content-grid">
+                <div class="panel glass-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Faturamento Anual</h2>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                <div class="panel glass-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Atividade Recente</h2>
+                    </div>
+                    <div class="activity-list" id="recentActivityList">
+                        <div style="text-align:center;padding:2rem;color:var(--text-muted);">Carregando...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

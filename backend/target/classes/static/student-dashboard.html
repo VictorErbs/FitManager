@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Aluno | Academia FitLife</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="student-dashboard.html" class="sidebar-logo" id="sidebarLogoToggle">
+                <i class="ph-fill ph-barbell"></i>
+                <span>FitLife</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="student-dashboard.html" class="nav-item active"><i class="ph ph-squares-four"></i><span>Meu Painel</span></a>
+            <a href="student-workouts.html" class="nav-item"><i class="ph ph-clipboard-text"></i><span>Meus Treinos</span></a>
+            <a href="student-finance.html" class="nav-item"><i class="ph ph-currency-dollar"></i><span>Financeiro</span></a>
+            <a href="student-profile.html" class="nav-item"><i class="ph ph-user"></i><span>Meu Perfil</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">AL</div>
+                <div class="user-info">
+                    <div class="user-name">Aluno Exemplo</div>
+                    <div class="user-role">Plano Prata</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-wrapper">
+        <header class="top-header">
+            <!-- Simplified header for student -->
+            <div style="flex: 1;"></div>
+            <div class="header-actions">
+                <button class="header-toggle" id="mobileMenuToggle"><i class="ph ph-list"></i></button>
+                <button class="action-btn"><i class="ph ph-bell"></i></button>
+                <button class="action-btn" onclick="document.location.href='index.html'" title="Sair"><i class="ph ph-sign-out"></i></button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Olá, Aluno!</h1>
+                    <p>Aqui está o seu painel de acompanhamento.</p>
+                </div>
+            </div>
+
+            <!-- Stat Cards for Student -->
+            <div class="dashboard-grid">
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Status da Mensalidade</div>
+                        <div class="stat-icon revenue" style="background: rgba(16,185,129,0.12); color: #10b981;"><i class="ph-fill ph-check-circle"></i></div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1.5rem;">Em dia</div>
+                    <div class="stat-trend positive">Vence em 15 dias</div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Treino Atual</div>
+                        <div class="stat-icon" style="background: rgba(56,189,248,0.12); color: #38bdf8;"><i class="ph-fill ph-barbell"></i></div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1.5rem;">Ficha A</div>
+                    <div class="stat-trend positive">Peito e Tríceps</div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Check-ins no Mês</div>
+                        <div class="stat-icon checkins" style="background: rgba(168,85,247,0.12); color: #a855f7;"><i class="ph-fill ph-calendar-check"></i></div>
+                    </div>
+                    <div class="stat-value">12</div>
+                    <div class="stat-trend">Frequência de 85%</div>
+                </div>
+            </div>
+
+            <!-- Content Grid for Student -->
+            <div class="content-grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="panel glass-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Exercícios do Dia (Ficha A)</h2>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-details">
+                                <div class="activity-text" style="font-weight: 600;">Supino Reto</div>
+                                <div class="activity-time">4 séries de 10-12 reps</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-details">
+                                <div class="activity-text" style="font-weight: 600;">Supino Inclinado com Halteres</div>
+                                <div class="activity-time">3 séries de 10 reps</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-details">
+                                <div class="activity-text" style="font-weight: 600;">Crucifixo Máquina</div>
+                                <div class="activity-time">3 séries de 12 reps</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-details">
+                                <div class="activity-text" style="font-weight: 600;">Tríceps Pulley</div>
+                                <div class="activity-time">4 séries de 12 reps</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 1rem; justify-content: center;">Ver treino completo</button>
+                </div>
+                
+                <div class="panel glass-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Próxima Fatura</h2>
+                    </div>
+                    <div style="padding: 1rem 0; border-bottom: 1px solid var(--surface-border); margin-bottom: 1rem;">
+                        <div style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;">Valor Total</div>
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--text-main);">R$ 119,90</div>
+                        <div style="color: #10b981; font-size: 0.85rem; margin-top: 0.25rem;">Vencimento: 15/04/2026</div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; justify-content: center; background: rgba(56,189,248,0.1); color: #38bdf8; border: 1px solid rgba(56,189,248,0.2);">Copiar Código PIX</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="js/sidebar.js"></script>
+<script src="js/student-dashboard.js"></script>
+</body>
+</html>

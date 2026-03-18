@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recepção / Check-in | Academia FitLife</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/students.css">
+    <link rel="stylesheet" href="css/checkin.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="sidebar-logo"><i class="ph-fill ph-barbell"></i><span>FitLife</span></a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item"><i class="ph ph-squares-four"></i><span>Painel Geral</span></a>
+            <a href="students.html" class="nav-item"><i class="ph ph-users"></i><span>Alunos</span></a>
+            <a href="workouts.html" class="nav-item"><i class="ph ph-clipboard-text"></i><span>Treinos</span></a>
+            <a href="checkin.html" class="nav-item active"><i class="ph ph-check-circle"></i><span>Recepção / Check-in</span></a>
+            <a href="financeiro.html" class="nav-item"><i class="ph ph-currency-dollar"></i><span>Financeiro</span></a>
+            <a href="configuracoes.html" class="nav-item"><i class="ph ph-gear"></i><span>Configurações</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar">RE</div>
+                <div class="user-info"><div class="user-name">Recepcionista</div><div class="user-role">Recepção</div></div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-wrapper">
+        <header class="top-header">
+            <div class="search-bar">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar histórico de check-ins...">
+            </div>
+            <div class="header-actions">
+                <button class="header-toggle" id="mobileMenuToggle"><i class="ph ph-list"></i></button>
+                <button class="action-btn" onclick="document.location.href='index.html'" title="Sair"><i class="ph ph-sign-out"></i></button>
+            </div>
+        </header>
+
+        <div class="main-content page-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Recepção / Check-in</h1>
+                    <p>Registre a entrada dos alunos na academia.</p>
+                </div>
+                <div class="checkin-live-badge">
+                    <span class="live-dot"></span>
+                    <span id="todayCount">0</span> check-ins hoje
+                </div>
+            </div>
+
+            <div class="checkin-layout">
+                <!-- Quick Check-in Panel -->
+                <div class="glass-panel checkin-form-panel">
+                    <h2 class="panel-section-title"><i class="ph ph-sign-in"></i> Registrar Entrada</h2>
+                    <form id="checkinForm">
+                        <div class="form-group">
+                            <label>Nome do Aluno</label>
+                            <div class="student-search-wrapper">
+                                <input type="text" id="studentSearchInput" class="form-control" placeholder="Digite o nome do aluno..." autocomplete="off" oninput="searchStudents()">
+                                <div class="student-suggestions" id="studentSuggestions"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Observação (opcional)</label>
+                            <input type="text" id="checkinNote" class="form-control" placeholder="Ex: Aula de spinning, Personal trainer...">
+                        </div>
+                        <div class="checkin-time-display">
+                            <i class="ph ph-clock"></i>
+                            <span id="currentTime"></span>
+                        </div>
+                        <button type="submit" class="btn-primary checkin-btn" style="width:100%">
+                            <i class="ph ph-check-fat"></i>
+                            Confirmar Entrada
+                        </button>
+                    </form>
+                    <div id="checkinFeedback" class="checkin-feedback" style="display:none;"></div>
+                </div>
+
+                <!-- Today's List -->
+                <div class="glass-panel checkin-list-panel">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Check-ins de Hoje</h2>
+                        <button class="action-btn" onclick="loadTodayCheckIns()" title="Atualizar"><i class="ph ph-arrows-clockwise"></i></button>
+                    </div>
+                    <div id="todayList" class="checkin-today-list">
+                        <div style="text-align:center;padding:2rem;color:var(--text-muted);">Carregando...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="js/sidebar.js"></script>
+<script src="js/checkin.js"></script>
+</body>
+</html>

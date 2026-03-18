@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações | Academia FitLife</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/configuracoes.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="sidebar-logo"><i class="ph-fill ph-barbell"></i><span>FitLife</span></a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item"><i class="ph ph-squares-four"></i><span>Painel Geral</span></a>
+            <a href="students.html" class="nav-item"><i class="ph ph-users"></i><span>Alunos</span></a>
+            <a href="workouts.html" class="nav-item"><i class="ph ph-clipboard-text"></i><span>Treinos</span></a>
+            <a href="checkin.html" class="nav-item"><i class="ph ph-check-circle"></i><span>Recepção / Check-in</span></a>
+            <a href="financeiro.html" class="nav-item"><i class="ph ph-currency-dollar"></i><span>Financeiro</span></a>
+            <a href="configuracoes.html" class="nav-item active"><i class="ph ph-gear"></i><span>Configurações</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar">GE</div>
+                <div class="user-info"><div class="user-name">Gestor Exemplo</div><div class="user-role">Administrador</div></div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-wrapper">
+        <header class="top-header">
+            <div class="search-bar"><i class="ph ph-magnifying-glass"></i><input type="text" placeholder="Buscar configuração..."></div>
+            <div class="header-actions">
+                <button class="header-toggle" id="mobileMenuToggle"><i class="ph ph-list"></i></button>
+                <button class="action-btn" onclick="document.location.href='index.html'" title="Sair"><i class="ph ph-sign-out"></i></button>
+            </div>
+        </header>
+
+        <div class="main-content page-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Configurações</h1>
+                    <p>Personalize as informações da sua academia.</p>
+                </div>
+                <button class="btn-primary" onclick="saveAll()">
+                    <i class="ph ph-floppy-disk" style="margin-right:.5rem"></i>Salvar Tudo
+                </button>
+            </div>
+
+            <div class="config-layout">
+                <!-- Dados da Academia -->
+                <section class="glass-panel config-section">
+                    <h2 class="config-section-title"><i class="ph ph-buildings"></i> Dados da Academia</h2>
+                    <div class="form-row">
+                        <div class="form-group"><label>Nome da Academia</label><input type="text" id="cfgName" class="form-control" placeholder="Academia FitLife"></div>
+                        <div class="form-group"><label>CNPJ</label><input type="text" id="cfgCnpj" class="form-control" placeholder="00.000.000/0001-00"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Telefone</label><input type="text" id="cfgPhone" class="form-control" placeholder="(00) 0000-0000"></div>
+                        <div class="form-group"><label>E-mail</label><input type="email" id="cfgEmail" class="form-control" placeholder="contato@academia.com"></div>
+                    </div>
+                    <div class="form-group"><label>Endereço</label><input type="text" id="cfgAddress" class="form-control" placeholder="Rua Exemplo, 123 – Bairro, Cidade – UF"></div>
+                </section>
+
+                <!-- Horários de Funcionamento -->
+                <section class="glass-panel config-section">
+                    <h2 class="config-section-title"><i class="ph ph-clock"></i> Horários de Funcionamento</h2>
+                    <div class="hours-grid">
+                        <div class="hours-row">
+                            <span class="day-label">Seg – Sex</span>
+                            <input type="time" id="cfgWeekdayOpen"  class="form-control time-input" value="06:00">
+                            <span class="time-sep">às</span>
+                            <input type="time" id="cfgWeekdayClose" class="form-control time-input" value="22:00">
+                        </div>
+                        <div class="hours-row">
+                            <span class="day-label">Sábado</span>
+                            <input type="time" id="cfgSatOpen"  class="form-control time-input" value="07:00">
+                            <span class="time-sep">às</span>
+                            <input type="time" id="cfgSatClose" class="form-control time-input" value="18:00">
+                        </div>
+                        <div class="hours-row">
+                            <span class="day-label">Domingo</span>
+                            <input type="time" id="cfgSunOpen"  class="form-control time-input" value="08:00">
+                            <span class="time-sep">às</span>
+                            <input type="time" id="cfgSunClose" class="form-control time-input" value="13:00">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Planos de Mensalidade -->
+                <section class="glass-panel config-section">
+                    <h2 class="config-section-title"><i class="ph ph-tag"></i> Planos de Mensalidade</h2>
+                    <div id="plansContainer" class="plans-container"></div>
+                    <button type="button" class="btn-add-plan" onclick="addPlan()">
+                        <i class="ph ph-plus"></i> Adicionar Plano
+                    </button>
+                </section>
+            </div>
+
+            <div id="saveToast" class="save-toast" style="display:none;">
+                <i class="ph ph-check-circle"></i> Configurações salvas com sucesso!
+            </div>
+        </div>
+    </main>
+</div>
+<script src="js/configuracoes.js"></script>
+</body>
+</html>

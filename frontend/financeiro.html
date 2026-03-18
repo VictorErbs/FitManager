@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financeiro | Academia FitLife</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/students.css">
+    <link rel="stylesheet" href="css/financeiro.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard.html" class="sidebar-logo"><i class="ph-fill ph-barbell"></i><span>FitLife</span></a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item"><i class="ph ph-squares-four"></i><span>Painel Geral</span></a>
+            <a href="students.html" class="nav-item"><i class="ph ph-users"></i><span>Alunos</span></a>
+            <a href="workouts.html" class="nav-item"><i class="ph ph-clipboard-text"></i><span>Treinos</span></a>
+            <a href="checkin.html" class="nav-item"><i class="ph ph-check-circle"></i><span>Recepção / Check-in</span></a>
+            <a href="financeiro.html" class="nav-item active"><i class="ph ph-currency-dollar"></i><span>Financeiro</span></a>
+            <a href="configuracoes.html" class="nav-item"><i class="ph ph-gear"></i><span>Configurações</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="avatar">GE</div>
+                <div class="user-info"><div class="user-name">Gestor Exemplo</div><div class="user-role">Administrador</div></div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-wrapper">
+        <header class="top-header">
+            <div class="search-bar"><i class="ph ph-magnifying-glass"></i><input type="text" placeholder="Buscar lançamento..."></div>
+            <div class="header-actions">
+                <button class="header-toggle" id="mobileMenuToggle"><i class="ph ph-list"></i></button>
+                <button class="action-btn" onclick="document.location.href='index.html'" title="Sair"><i class="ph ph-sign-out"></i></button>
+            </div>
+        </header>
+
+        <div class="main-content page-content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Financeiro</h1>
+                    <p>Gerencie receitas e despesas da academia.</p>
+                </div>
+                <button class="btn-primary" onclick="openModal()">
+                    <i class="ph ph-plus" style="margin-right:.5rem"></i>Novo Lançamento
+                </button>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="dashboard-grid" style="margin-bottom: 2rem;">
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Total de Receitas</div>
+                        <div class="stat-icon revenue"><i class="ph-fill ph-trend-up"></i></div>
+                    </div>
+                    <div class="stat-value income-value" id="totalIncome">R$ --</div>
+                    <div class="stat-trend positive">Entradas registradas</div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Total de Despesas</div>
+                        <div class="stat-icon alerts"><i class="ph-fill ph-trend-down"></i></div>
+                    </div>
+                    <div class="stat-value expense-value" id="totalExpense">R$ --</div>
+                    <div class="stat-trend negative">Saídas registradas</div>
+                </div>
+                <div class="stat-card glass-panel">
+                    <div class="stat-header">
+                        <div class="stat-title">Saldo</div>
+                        <div class="stat-icon users"><i class="ph-fill ph-scales"></i></div>
+                    </div>
+                    <div class="stat-value" id="balance">R$ --</div>
+                    <div class="stat-trend" id="balanceTrend">Calculando...</div>
+                </div>
+            </div>
+
+            <!-- Transactions Table -->
+            <div class="panel glass-panel">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Data</th>
+                                <th>Tipo</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsBody">
+                            <tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--text-muted);">Carregando...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="closeModalOutside(event)">
+    <div class="glass-panel modal">
+        <div class="modal-header">
+            <h2 class="modal-title">Novo Lançamento</h2>
+            <button class="close-btn" onclick="closeModal()"><i class="ph ph-x"></i></button>
+        </div>
+        <form id="transactionForm">
+            <div class="form-group">
+                <label>Descrição</label>
+                <input type="text" id="tDesc" class="form-control" placeholder="Ex: Mensalidade – João Alves" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <select id="tType" class="form-control">
+                        <option value="INCOME">Receita</option>
+                        <option value="EXPENSE">Despesa</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Valor (R$)</label>
+                    <input type="number" id="tAmount" class="form-control" placeholder="0,00" step="0.01" min="0" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="tCategory" class="form-control">
+                        <option value="Mensalidade">Mensalidade</option>
+                        <option value="Matrícula">Matrícula</option>
+                        <option value="Folha de Pagamento">Folha de Pagamento</option>
+                        <option value="Despesas Fixas">Despesas Fixas</option>
+                        <option value="Equipamentos">Equipamentos</option>
+                        <option value="Manutenção">Manutenção</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Data</label>
+                    <input type="date" id="tDate" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn-primary"><i class="ph ph-floppy-disk" style="margin-right:.5rem"></i>Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="js/sidebar.js"></script>
+<script src="js/financeiro.js"></script>
+</body>
+</html>
